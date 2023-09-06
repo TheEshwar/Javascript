@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throttling</title>
+    <script type="text/javascript" src="./index.js"></script>
+    <style>
+        body{
+            height: 1000px
+        }
+    </style>
+</head>
+<body onscroll="scroll()">
+
+    <div style="position: fixed;">
+        Without throttling :- <span class="normal"></span><Br>
+        With throttling :- <span class="throttle"></span>
+    </div>
+
+    <script>
+        const normalDiv = document.querySelector(".normal")
+        const throttleDiv = document.querySelector(".throttle")
+
+        let n_count = 0;
+        let t_count = 0;
+        let scrolling = true;
+
+        const normalScroll = () => {
+            n_count++;
+            normalDiv.innerHTML = n_count 
+        }
+
+        const throttleScroll = () => {
+            if(scrolling === true){
+                t_count++
+                throttleDiv.innerHTML = t_count        
+                scrolling = false
+                
+                setTimeout(() => {
+                    scrolling = true    
+                }, 1000);
+            }
+        }
+
+        function scroll(){
+            normalScroll()
+            throttleScroll()
+        }
+
+    </script>
+</body>
+</html>
